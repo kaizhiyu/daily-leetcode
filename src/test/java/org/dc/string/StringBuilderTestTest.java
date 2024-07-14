@@ -16,5 +16,8 @@ public class StringBuilderTestTest {
 
         sb.deleteCharAt(1);
         System.out.println(sb);
+
+        sb.deleteCharAt(0);
+        System.out.println(sb);
     }
 }
