@@ -1,4 +1,4 @@
-package org.dc.sort;
+package org.dc.array;
 
 /**
  *
@@ -29,19 +29,36 @@ public class Leetcode74 {
      *
      */
     public boolean searchMatrix(int[][] matrix, int target) {
-        int rowIndex = binarySearchFirstColumn(matrix, target);
+        // int rowIndex = binarySearchFirstColumn1(matrix, target);
+
+        // 找到第一个 小于等于 target 的位置
+        int rowIndex = binarySearchFirstColumn2(matrix, target + 1) - 1;
         if (rowIndex < 0) {
             return false;
         }
         return binarySearchRow(matrix[rowIndex], target);
     }
 
-    public int binarySearchFirstColumn(int[][] matrix, int target) {
+    public int binarySearchFirstColumn1(int[][] matrix, int target) {
         int low = -1, high = matrix.length - 1;
         while (low < high) {
             int mid = (high - low + 1) / 2 + low;
             if (matrix[mid][0] <= target) {
                 low = mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return low;
+    }
+
+    public int binarySearchFirstColumn2(int[][] matrix, int target) {
+        int low = 0, high = matrix.length - 1;
+        while (low <= high) {
+            int mid = (high - low) / 2 + low;
+            if (matrix[mid][0] < target) {
+                low = mid + 1;
             } else {
                 high = mid - 1;
             }

@@ -1,4 +1,4 @@
-package org.dc.deque;
+package org.dc.queue;
 
 import java.util.Deque;
 import java.util.LinkedList;

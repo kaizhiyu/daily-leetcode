@@ -42,7 +42,6 @@ public class Leetcode18 {
     }
 
     public int strStr(String haystack, String needle) {
-
         int needleLength = needle.length();
         if (needleLength == 0) {
             return 0;
