@@ -1,0 +1,128 @@
+
+视频算法：
+https://www.bilibili.com/video/BV1bM411X72E/?p=27&vd_source=90ccec7f63fd55273154473f8d9d8ae0
+
+
+
+
+预备知识
+1）回溯法
+一种通过探索所有可能的候选解来找出所有的解的算法。如果候选解被确认不是一个解（或者至少不是最后一个解），回溯算法会通过在上一步进行一些变化抛弃该解，即回溯并且再次尝试。
+
+回溯算法入门级详解 + 练习（持续更新） https://leetcode.cn/problems/permutations/solutions/9914/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/
+「代码随想录」带你学透回溯算法！46. 全排列 https://leetcode.cn/problems/permutations/solutions/857631/dai-ma-sui-xiang-lu-dai-ni-xue-tou-hui-s-mfrp/
+
+
+2）二分算法
+
+分享丨【题单】二分算法（二分答案/最小化最大值/最大化最小值/第K小）https://leetcode.cn/circle/discuss/SqopEo/
+
+3）单调栈
+
+分享｜【题单】单调栈（矩形面积/贡献法/最小字典序） https://leetcode.cn/circle/discuss/9oZFK9/
+
+
+
+4）回溯
+-----------------------
+用一个path数组记录路径上的字母
+回溯三问：
+当前操作？枚举path[i]要填入的字母；
+子问题？构造字符串>=i的部分；
+下一个子问题？构造字符串>=i+1的部分
+
+dfs(i) -> dfs(i+1) 这其中的i不是第i个，而是>=i的部分
+-----------------------
+
+回溯分为几类：
+## 子集型回溯：每个元素都可以选或者不选
+
+模板一：站在输入的角度思考问题，每个数可以在子集中（选），也可以不在子集中（不选），叶子是答案
+
+回溯三问：
+当前操作？枚举第i个选/不选
+子问题？从下标>=i的数字中构造子集
+下一个子问题？从下标>=i+1的数字中构造子集
+dfs(i) -> dfs(i+1)
+
+举个例子
+对于输入的 nums，考虑每个 nums[i] 是选还是不选，由此组合出 2^n个不同的子集。
+dfs 中的 i 表示当前考虑到 nums[i] 选或不选。
+
+模板二：站在答案的视角，枚举第一个选谁，枚举第二个选谁，每个节点都是答案
+
+回溯三问：
+当前操作？枚举一个下标j>=i的数字加入path
+子问题？从下标>=i的数字中构造子集
+下一个子问题？从下标>=j+1的数字中构造子集
+
+dfs(i) -> dfs(i+1)
+       -> dfs(i+2)
+       ...
+       -> dfs(n)
+
+举个例子
+枚举子集（答案）的第一个数选谁，第二个数选谁，第三个数选谁，依此类推。
+dfs 中的 i 表示现在要枚举选 nums[i] 到 nums[n−1] 中的一个数，添加到 path 末尾。
+如果选 nums[j] 添加到 path 末尾，那么下一个要添加到 path 末尾的数，就要在 nums[j+1] 到 nums[n−1] 中枚举了。
+
+## 组合型回溯
+从n个数中选择k个数的组合，可以看成长度固定的子集
+！！！重点是做好剪枝！！！
+
+
+## 排列型回溯
+
+
+
+-----------------------
+时间复杂度：分析回溯问题的时间复杂度，有一个通用公式：路径长度×搜索树的叶子数。
+-----------------------
+
+
+
+
+-----------------------
+关于“恢复现场”的个人理解：
+在递归到某一“叶子节点”（非最后一个叶子）时，答案需要向上返回，而此时还有其他的子树（与前述节点不在同一子树）未被递归到，又由于path为全局变量。若直接返回，会将本不属于该子树的答案带上去，故需要恢复现场。
+恢复现场的方式为：在递归完成后 dfs(i+1); 后，进行与“当前操作”相反的操作，“反当前操作”。
+-----------------------
+
+
+视频学习 https://www.bilibili.com/video/BV1mG4y1A7Gu/?vd_source=90ccec7f63fd55273154473f8d9d8ae0
+
+17. 电话号码的字母组合 https://leetcode.cn/problems/letter-combinations-of-a-phone-number/solutions/2059416/hui-su-bu-hui-xie-tao-lu-zai-ci-pythonja-3orv/
+78. 子集 https://leetcode.cn/problems/subsets/solutions/2059409/hui-su-bu-hui-xie-tao-lu-zai-ci-pythonja-8tkl/
+131. 分割回文串 https://leetcode.cn/problems/palindrome-partitioning/solutions/2059414/hui-su-bu-hui-xie-tao-lu-zai-ci-pythonja-fues/
+
+课后作业：
+257. 二叉树的所有路径 https://leetcode.cn/problems/binary-tree-paths/ 回溯+复习前面学的二叉树递归
+113. 路径总和 II https://leetcode.cn/problems/path-sum-ii/ 回溯+复习前面学的二叉树递归
+784. 字母大小写全排列 https://leetcode.cn/problems/letter-case-permutation/
+LCP 51. 烹饪料理 https://leetcode.cn/problems/UEcfPD/
+2397. 被列覆盖的最多行数 https://leetcode.cn/problems/maximum-rows-covered-by-columns/
+2151. 基于陈述统计最多好人数 https://leetcode.cn/problems/maximum-good-people-based-on-statements/
+1601. 最多可达成的换楼请求数目 https://leetcode.cn/problems/maximum-number-of-achievable-transfer-requests/
+306. 累加数 https://leetcode.cn/problems/additive-number/
+93. 复原 IP 地址 https://leetcode.cn/problems/restore-ip-addresses/
+2698. 求一个整数的惩罚数 https://leetcode.cn/problems/find-the-punishment-number-of-an-integer/
+
+【基础算法精讲】题目+题解汇总：
+https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
+
+参考资料：
+Backtracking - Wikipedia https://en.wikipedia.org/wiki/Backtracking
+
+
+5）动态规划
+5.1）背包问题
+
+完全背包
+https://www.bilibili.com/video/BV16Y411v7Y6/?vd_source=90ccec7f63fd55273154473f8d9d8ae0
+
+
+6）二叉树
+
+各种树的定义：
+平衡二叉树的定义是：二叉树的每个节点的左右子树的高度差的绝对值不超过 1，则二叉树是平衡二叉树。根据定义，一棵二叉树是平衡二叉树，当且仅当其所有子树也都是平衡二叉树
+
