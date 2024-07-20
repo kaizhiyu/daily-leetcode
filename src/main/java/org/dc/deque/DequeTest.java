@@ -1,4 +1,4 @@
-package org.dc.queue;
+package org.dc.deque;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -23,8 +23,8 @@ import java.util.LinkedList;
  * offerLast()  -> 在 Deque 的头部添加元素，如果添加成功返回true，否则返回false。
  * push()       -> 在 Deque 的头部添加元素，如果Deque中的元素满了，则会抛异常，这和addFirst()方法比较相似。
  *
- * remove()     -> 移除Deque中的第一个元素并返回，如果 Deque 是空则抛异常，这一点和poll()返回null不一样。
- * poll()       -> 移除Deque中的第一个元素，如果Deque为空则poll()返回null，这和remove()方法抛异常不一样。
+ * remove()     -> 移除Deque的第一个元素并返回，如果 Deque 是空则抛异常，这一点和poll()返回null不一样。
+ * poll()       -> 移除Deque的第一个元素，如果Deque为空则poll()返回null，这和remove()方法抛异常不一样。
  * pop()        -> 移除Deque的第一个元素，如果Deque是空则抛异常：
  *
  *

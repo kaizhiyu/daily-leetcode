@@ -20,4 +20,17 @@ public class StringBuilderTestTest {
         sb.deleteCharAt(0);
         System.out.println(sb);
     }
+
+    @Test
+    public void testInsertMethod() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.insert(0, "hello word");
+        stringBuilder.insert(0, "/");
+
+        stringBuilder.insert(0, "ni hao");
+        stringBuilder.insert(0, "/");
+
+        System.out.println(stringBuilder);
+    }
 }
