@@ -118,9 +118,26 @@ Backtracking - Wikipedia https://en.wikipedia.org/wiki/Backtracking
 完全背包
 https://www.bilibili.com/video/BV16Y411v7Y6/?vd_source=90ccec7f63fd55273154473f8d9d8ae0
 
+5.2) 线性DP
+子串(substring)、子数组(subArray)、子序列(subSequence)
+子序列：本质就是选或者不选
+
+
+
+5.3) 状态机DP
+
+
+
+5.4) 区间DP
+
+
+
+
+5.5) 树形DP
+
+
 
 6）二叉树
-
 各种树的定义：
 平衡二叉树的定义是：二叉树的每个节点的左右子树的高度差的绝对值不超过 1，则二叉树是平衡二叉树。根据定义，一棵二叉树是平衡二叉树，当且仅当其所有子树也都是平衡二叉树
 
