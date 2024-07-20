@@ -85,8 +85,14 @@ public class Leetcode46 {
 
     /**
      *
-     * 方法二：
+     * 方法二：从答案角度考虑
      *
+     * 数组path记录路径上的数（已选数字）
+     * 集合s记录未选数字
+     * 回溯三问：
+     * 当前操作？从s中枚举path[i]要填入的数字x
+     * 子问题？构造排列>=i的部分，剩余未选数字集合为s
+     * 下一个子问题？构造排列>=i+1的部分，剩余未选数字集合为s-{x}
      *
      */
     private int[] flag;
@@ -104,7 +110,7 @@ public class Leetcode46 {
 
     private void domain(int[] nums, List<Integer> cur, List<List<Integer>> res) {
         if (cur.size() == nums.length) {
-            res.add(new ArrayList<>(cur));
+            res.add(new ArrayList<>(cur)); // 一定要new，否则最后全部是空
             return;
         }
 
