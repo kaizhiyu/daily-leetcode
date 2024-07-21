@@ -113,6 +113,18 @@ Backtracking - Wikipedia https://en.wikipedia.org/wiki/Backtracking
 
 
 5）动态规划
+状态定义？状态转移方程？
+启发思路：选或不选/选哪个 这两种思路
+
+思考回溯怎么写
+    入参和返回值
+    递归到哪里
+    递归边界和入口
+改成记忆化搜索
+1:1翻译成递推
+
+参考：https://leetcode.cn/circle/discuss/tXLS3i/
+
 5.1）背包问题
 
 完全背包
