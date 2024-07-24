@@ -70,8 +70,8 @@ public class Leetcode98 {
             return true;
         }
 
-        if (!isValidBST(root.left)) {
-            return  false;
+        if (!isValidBST2(root.left)) {
+            return false;
         }
 
         long x = root.val;
@@ -80,7 +80,7 @@ public class Leetcode98 {
         }
 
         pre = x;
-        return isValidBST(root.right);
+        return isValidBST2(root.right);
     }
 
     /**
