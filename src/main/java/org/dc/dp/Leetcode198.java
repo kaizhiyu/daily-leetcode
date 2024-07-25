@@ -33,7 +33,7 @@ public class Leetcode198 {
      *  不选：从前i-1个房子获得的最大金额和
      *   选：从前i-2个房子获得的最大金额和
      *
-     *   dfs(i) = max(dfs(i-1), dfs(i-2)+nums[i])
+     *   dfs(i) = max(dfs(i-1), dfs(i-2) + nums[i])
      *   dfs(i) 的含义就是从前i个房子中获得的最大金额和
      *
      * 但是回溯的时间复杂度都是指数级别的，这个时候可以考虑是cache数组或者哈希表缓存计算结果

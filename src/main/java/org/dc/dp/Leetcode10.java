@@ -22,7 +22,6 @@ public class Leetcode10 {
         char[] cp = p.toCharArray();
 
         // dp[i][j]:表示s的前i个字符，p的前j个字符是否能够匹配
-        //
         boolean[][] dp = new boolean[cs.length + 1][cp.length + 1];
 
         // 初期值
