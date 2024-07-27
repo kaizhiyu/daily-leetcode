@@ -23,4 +23,8 @@ public class StringMethodTest {
 
         System.out.println(String.join("-", list));
     }
+
+    @Test
+    public void testMinus() {
+    }
 }
