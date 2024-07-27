@@ -23,8 +23,37 @@ package org.dc.link;
  *
  */
 public class Leetcode25 {
+    /**
+     * 1）统计节点
+     * 2）分批处理，每个批次k个节点翻转，但是这里面就有几个重要的点：
+     *  每次处理前需要记录节点，以便于翻转后该节点 p0 的 next 的值；
+     *  pre、cur、next 方便于节点的翻转
+     *
+     */
     public ListNode reverseKGroup(ListNode head, int k) {
-        return null;
+        int n = 0;
+        for (ListNode cur = head; cur != null; cur = cur.next) {
+            ++n; // 统计节点个数
+        }
+
+        ListNode dummy = new ListNode(0, head), p0 = dummy;
+        ListNode pre = null, cur = head;
+
+        for (; n >= k; n -= k) {
+            for (int i = 0; i < k; i++) {
+                ListNode nxt = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = nxt;
+            }
+
+            ListNode temp = p0.next;
+            p0.next.next = cur;
+            p0.next = pre;
+            p0 = temp;
+        }
+
+        return dummy.next;
     }
 
     public static class ListNode {
