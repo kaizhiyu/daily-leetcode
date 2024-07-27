@@ -39,12 +39,19 @@ public class Leetcode206 {
         return prev;
     }
 
-//    /**
-//     * 使用递归，递归有个好处，可以不用额外的变量
-//     */
-//    public ListNode reverseList2(ListNode head) {
-//
-//    }
+    /**
+     * 使用递归，递归有个好处，可以太多额外的变量
+     */
+    public ListNode reverseList2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode newHead = reverseList2(head.next);
+        head.next.next = head; // 把下一个节点指向自己
+        head.next = null;      // 断开指向下一个节点的连接，保证最终链表的末尾节点的 next 是空节点
+        return newHead;
+    }
 
 
     public static class ListNode {
