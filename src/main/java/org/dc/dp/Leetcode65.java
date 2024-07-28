@@ -1,4 +1,4 @@
-package org.dc.fsm;
+package org.dc.dp;
 
 import java.util.HashMap;
 import java.util.Map;

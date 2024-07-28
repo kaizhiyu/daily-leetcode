@@ -14,6 +14,26 @@ https://www.bilibili.com/video/BV1bM411X72E/?p=27&vd_source=90ccec7f63fd55273154
 
 
 2）二分算法
+红蓝染色法
+    根据循环不变量，对要检索的区间进行染色，红色表示false，一定是不满足的；蓝色表示true，一定满足。最终完成整个检索区间的染色，要么蓝，要么红。
+
+循环不变量
+    循环不变量：在循环的过程中保持不变的性质
+    循环不变式主要用来帮助我们理解算法的正确性。关于循环不变式，我们必须证明三条性质：
+        初始化：循环的第一次迭代之前，它为真。
+        保持：如果循环的某次迭代之前它为真，那么下次迭代之前它仍为真。
+        终止：在循环终止时，不变式为我们提供一个有用的性质，该性质有助于证明算法是正确的。
+    参考： https://blog.csdn.net/qq_55123599/article/details/124106564?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-3-124106564-blog-73298854.235%5Ev43%5Epc_blog_bottom_relevance_base7&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-3-124106564-blog-73298854.235%5Ev43%5Epc_blog_bottom_relevance_base7&utm_relevant_index=6
+
+
+    二分查找
+    a[lo:hi]（左闭右开）是待查找的区间，
+    循环不变式：
+        lo 左边的元素全部严格小于x，
+        hi及hi 右边的元素全部大于等于x。
+        关键不在于区间里的元素具有什么性质，而是区间外面的元素具有什么性质。
+        当循环结束时，lo==hi，根据循环不变式，可知hi为第一个大于等于x的元素。
+    参考： https://blog.csdn.net/groovy2007/article/details/78309120
 
 分享丨【题单】二分算法（二分答案/最小化最大值/最大化最小值/第K小）https://leetcode.cn/circle/discuss/SqopEo/
 
