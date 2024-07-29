@@ -19,7 +19,31 @@ package org.dc.dp;
  *
  */
 public class Leetcode687 {
+    /**
+     * 还是取左右子树的最大深度，不过在使用前，需要额外判断，当前节点和左右子树节点值是否一致，一致的话，继续使用最大深度，否则直接为0。
+     * 就在这么计算的过程中，一方面比较最长边数，同时返回最大深度。
+     *
+     */
+    private int ans;
+    public int longestUnivaluePath(TreeNode root) {
+        dfs(root);
+        return ans;
+    }
 
+    private int dfs(TreeNode node) {
+        if (node == null) {
+            return -1;
+        }
+
+        int l = dfs(node.left) + 1;
+        int r = dfs(node.right) + 1;
+
+        if (node.left != null && node.left.val != node.val) l = 0;
+        if (node.right != null && node.right.val != node.val) r = 0;
+
+        ans = Math.max(ans, r + l);
+        return Math.max(l, r);
+    }
 
     public static class TreeNode {
         int val;

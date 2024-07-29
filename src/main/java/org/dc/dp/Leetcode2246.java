@@ -63,6 +63,7 @@ public class Leetcode2246 {
             if (s[y] != s[x]) {
                 // 以当前节点为拐点，计算可能的最大长度，当然是以当前节点下的多个子树进行链接得到的最大值
                 ans = Math.max(ans, maxLen + len);
+
                 // 更新最大的长度
                 maxLen = Math.max(maxLen, len);
             }

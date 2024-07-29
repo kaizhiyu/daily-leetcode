@@ -64,6 +64,7 @@ public class Leetcode72 {
     }
 
     private int dfs(int i, int j) {
+        // 一个字符串为空，需要把另外一个不为空的字符串都去掉，所以返回 i/j + 1
         if (i < 0) return j + 1;
         if (j < 0) return i + 1;
 
