@@ -26,6 +26,11 @@ https://www.bilibili.com/video/BV1bM411X72E/?p=27&vd_source=90ccec7f63fd55273154
     参考： https://blog.csdn.net/qq_55123599/article/details/124106564?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-3-124106564-blog-73298854.235%5Ev43%5Epc_blog_bottom_relevance_base7&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-3-124106564-blog-73298854.235%5Ev43%5Epc_blog_bottom_relevance_base7&utm_relevant_index=6
 
 
+「二分」的本质是二段性，并非单调性。只要一段满足某个性质，另外一段不满足某个性质，就可以用「二分」。
+                leetcode81 元素并不唯一。这意味着无法直接根据与 nums[nums.length-1] 的大小关系，将数组划分为两段，即无法通过「二分」来找到旋转点。
+                nums[nums.length-1] 并不是唯一了，那么把他在区间内变成唯一的就行了
+                也就是说 需要在初始时就收缩空间，把L与R收缩到仅有一个的nums[nums.length-1]的区间。
+
     二分查找
     a[lo:hi]（左闭右开）是待查找的区间，
     循环不变式：
