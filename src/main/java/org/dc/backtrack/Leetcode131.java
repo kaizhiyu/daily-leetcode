@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 分割回文串
  *
  * 给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串。返回 s 所有可能的分割方案。
  *
@@ -23,8 +24,8 @@ import java.util.List;
  */
 public class Leetcode131 {
     /**
-     *
      * 从输入的角度考虑问题
+     * 想象s="aab" 可以在字符之间插入逗号表示分割的字符，比如"a,a,b"
      *
      */
     public List<List<String>> partition1(String s) {
