@@ -1,5 +1,6 @@
 package org.dc.tree;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,6 +77,78 @@ public class Leetcode106 {
         node.left = buildTree(is, ri - 1, ps, ps + ri - is - 1);
         node.right = buildTree(ri + 1, ie, ps + ri - is, pe - 1);
         return node;
+    }
+
+    /**
+     * 解法二：
+     * 中序遍历：按照「左子树-根-右子树」的顺序遍历二叉树。
+     * 后序遍历：按照「左子树-右子树-根」的顺序遍历二叉树。
+     * 递归边界：如果 postorder 的长度是 0（此时 inorder 的长度也是 0），对应着空节点，返回空。
+     *
+     * 复杂度分析
+     * 时间复杂度：O(n^2)，其中 n 为 postorder 的长度。最坏情况下二叉树是一条链，我们需要递归 O(n) 次，每次都需要 O(n) 的时间查找 postorder[n−1] 和复制数组。
+     * 空间复杂度：O(n^2)。
+     *
+     * 参考： https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/solutions/2647794/tu-jie-cong-on2-dao-onpythonjavacgojsrus-w8ny/
+     */
+    public TreeNode buildTree2(int[] inorder, int[] postorder) {
+        int n = postorder.length;
+        if (n == 0) { // 空节点
+            return null;
+        }
+
+        int leftSize = indexOf(inorder, postorder[n - 1]); // 左子树的大小
+        int[] in1 = Arrays.copyOfRange(inorder, 0, leftSize);
+        int[] in2 = Arrays.copyOfRange(inorder, leftSize + 1, n);
+        int[] post1 = Arrays.copyOfRange(postorder, 0, leftSize);
+        int[] post2 = Arrays.copyOfRange(postorder, leftSize, n - 1);
+
+        TreeNode left = buildTree2(in1, post1);
+        TreeNode right = buildTree2(in2, post2);
+        return new TreeNode(postorder[n - 1], left, right);
+    }
+
+    // 返回 x 在 a 中的下标，保证 x 一定在 a 中
+    private int indexOf(int[] a, int x) {
+        for (int i = 0; ; i++) {
+            if (a[i] == x) {
+                return i;
+            }
+        }
+    }
+
+    /**
+     * 解法三：
+     *
+     * 上面的写法有两个优化点：
+     * 用一个哈希表（或者数组）预处理 inorder 每个元素的下标，这样就可以 O(1) 查到 postorder[n−1] 在 inorder 的位置，从而 O(1) 知道左子树的大小。
+     * 把递归参数改成子数组下标区间（左闭右开区间）的左右端点，从而避免复制数组。
+     *
+     * 参考： https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/solutions/2647794/tu-jie-cong-on2-dao-onpythonjavacgojsrus-w8ny/
+     *
+     * 复杂度分析
+     * 时间复杂度：O(n)，其中 n 为 inorder 的长度。递归 O(n) 次，每次只需要 O(1) 的时间。
+     * 空间复杂度：O(n)。
+     * 注：由于哈希表常数比数组大，实际运行效率可能不如写法一。
+     */
+    public TreeNode buildTree3(int[] inorder, int[] postorder) {
+        int n = inorder.length;
+        Map<Integer, Integer> index = new HashMap<>(n); // 预分配空间
+        for (int i = 0; i < n; i++) {
+            index.put(inorder[i], i);
+        }
+        return dfs(inorder, 0, n, postorder, 0, n, index); // 左闭右开区间
+    }
+
+    private TreeNode dfs(int[] inorder, int inL, int inR, int[] postorder, int postL, int postR, Map<Integer, Integer> index) {
+        if (postL == postR) { // 空节点
+            return null;
+        }
+
+        int leftSize = index.get(postorder[postR - 1]) - inL; // 左子树的大小
+        TreeNode left = dfs(inorder, inL, inL + leftSize, postorder, postL, postL + leftSize, index);
+        TreeNode right = dfs(inorder, inL + leftSize + 1, inR, postorder, postL + leftSize, postR - 1, index);
+        return new TreeNode(postorder[postR - 1], left, right);
     }
 
     public static class TreeNode {
