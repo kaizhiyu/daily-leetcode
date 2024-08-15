@@ -1,4 +1,4 @@
-package org.dc.array;
+package org.dc.string;
 
 import java.util.*;
 

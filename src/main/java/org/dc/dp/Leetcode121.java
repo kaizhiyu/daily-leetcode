@@ -1,4 +1,4 @@
-package org.dc.array;
+package org.dc.dp;
 
 /**
  * 121. 买卖股票的最佳时机

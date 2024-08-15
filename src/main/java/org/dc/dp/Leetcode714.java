@@ -1,4 +1,4 @@
-package org.dc.array;
+package org.dc.dp;
 
 import java.util.Arrays;
 
